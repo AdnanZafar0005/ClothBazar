@@ -1,0 +1,32 @@
+﻿@*@model ClothBazar.web.ViewModels.CheckoutViewModels*@
+@model CheckoutViewModels
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+@if(Model.CartProducts != null)
+{
+    if(Model.CartProducts != null && Model.CartProducts.Count>0)
+    {
+        <div>
+            @foreach (var product in Model.CartProducts)
+            {
+                var productQuantity = Model.CartProductIDs.Where(productID => productID == product.ID).Count();
+                <div>
+                  Name:  @product.Name Quantity:  @productQuantity Price: @product.Price Total Price: @(product.Price * productQuantity)
+                </div>
+            }
+            <div>Total Bill: @Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID ==x.ID).Count());
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div>Empty Cart...!</div>
+    }
+
+}

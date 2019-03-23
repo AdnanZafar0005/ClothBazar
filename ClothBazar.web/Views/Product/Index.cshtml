@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+    <div id="tableContainer">
+        @{
+            Html.RenderAction("ProductTable");
+           // Html.RenderPartial("ProductTable");
+            //  Html.RenderAction("Create");
+        }
+
+    </div>
+    <hr />
+    <div id="actionContainer">  </div>
+
+
+</div>
+<script>
+    function focusAction(controlToFocus) {
+        $('html, body').animate({
+            scrollTop: $("#" + controlToFocus).offset().top - 100
+        }, 1000);
+    }
+</script>
+
